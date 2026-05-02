@@ -1,0 +1,67 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2406                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      thermophysicalProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// ************************************************************************* //
+
+thermoType
+{
+    type            hePsiThermo;
+    mixture         reactingMixture;
+    transport       sutherland;
+    thermo          janaf;
+    energy          sensibleEnthalpy;
+    equationOfState perfectGas;
+    specie          specie;
+}
+
+// Carrier gas chemistry/thermo data.
+// The solver does not solve combustion or YEqn.H, but psiReactionThermo and
+// basicSprayCloud still need thermophysical data.
+CHEMKINFile          "<case>/chemkin/chem.inp";
+CHEMKINThermoFile    "<case>/chemkin/therm.dat";
+CHEMKINTransportFile "<case>/chemkin/transportProperties";
+
+newFormat       yes;
+
+// Inert carrier species.
+// Keep N2 only if N2 exists in your chemkin mechanism.
+inertSpecie     N2;
+
+// Liquid phase for Liang et al. benchmark: water spray droplets.
+// This must match sprayCloudProperties:
+//
+// singlePhaseMixtureCoeffs
+// {
+//     phases
+//     (
+//         liquid
+//         {
+//             H2O 1;
+//         }
+//     );
+// }
+liquids
+{
+    H2O;
+}
+
+solids
+{}
+
+// ************************************************************************* //
+
+
+// ************************************************************************* //

@@ -7,6 +7,8 @@ Purpose:
   This version uses the paper-consistent density-weighted aerosol mass-fraction
   equation instead of the previous number-concentration equation.
 
+![alt text](image-1.png)
+
 Active physics kept:
   - compressible gas momentum/pressure/rho
   - Lagrangian spray droplets
