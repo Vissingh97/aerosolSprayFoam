@@ -2,8 +2,6 @@
 Custom aerosolSprayFoam based on Paper | "Numerical Simulation and Validation of Aerosol Particle Removal by Water Spray Droplets With OpenFOAM During the Fukushima Daiichi Fuel Debris Retrieval" | 
 
 
-aerosolSprayFoam_Yi_dynamicMesh_paper
-
 Purpose:
   Liang et al. aerosol washout benchmark solver with dynamic mesh support kept.
   This version uses the paper-consistent density-weighted aerosol mass-fraction
